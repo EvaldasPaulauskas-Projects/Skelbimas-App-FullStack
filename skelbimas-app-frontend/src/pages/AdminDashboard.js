@@ -74,8 +74,8 @@ function AdminDashboard() {
                         {categories.map(category => (
                             <div key={category.id} className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
                                 <div className="p-4">
-                                    <h2 className="text-xl font-semibold text-gray-800 mb-2">Name: {category.id}</h2>
-                                    <p className="text-sm text-gray-600 mb-4">Description: {category.tag}</p>
+                                    <h2 className="text-xl font-semibold text-gray-800 mb-2">Category: {category.tag}</h2>
+                                    <p className="text-sm text-gray-600 mb-4">ID: {category.id}</p>
 
                                     <div className="flex justify-center gap-4">
                                         <Link
