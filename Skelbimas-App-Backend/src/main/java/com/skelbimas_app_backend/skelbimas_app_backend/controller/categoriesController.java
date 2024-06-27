@@ -10,20 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/api/categories")
 public class categoriesController {
 
     @Autowired
     private categoriesService categoriesService;
 
     // Get all categories
-    @GetMapping
+    @GetMapping("/public/api/categories")
     public List<categories> getAllCategories() {
         return categoriesService.getAllCategories();
     }
 
     // Get a category by id
-    @GetMapping("/{id}")
+    @GetMapping("/public/api/categories/{id}")
     public ResponseEntity<categories> getCategoryById(@PathVariable Integer id) {
         categories category = categoriesService.getCategoryById(id);
         if (category != null) {
@@ -34,7 +33,7 @@ public class categoriesController {
     }
 
     // Create a new category
-    @PostMapping("/add")
+    @PostMapping("/admin/api/categories/add")
     public ResponseEntity<?> createCategory(@RequestBody categories category) {
         // Check if the category with the provided tag already exists
         categories existingCategory = categoriesService.getCategoryByTag(category.getTag());
@@ -50,7 +49,7 @@ public class categoriesController {
     }
 
     // Update an existing category
-    @PutMapping("/{id}")
+    @PutMapping("/admin/api/categories/{id}")
     public ResponseEntity<?> updateCategory(@PathVariable Integer id, @RequestBody categories category) {
         categories updatedCategory = categoriesService.updateCategory(id, category);
         if (updatedCategory != null) {
@@ -61,7 +60,7 @@ public class categoriesController {
     }
 
     // Delete a category
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/api/categories/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable Integer id) {
         categoriesService.deleteCategory(id);
         return ResponseEntity.noContent().build();

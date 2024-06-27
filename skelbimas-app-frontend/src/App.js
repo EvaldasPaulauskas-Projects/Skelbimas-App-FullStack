@@ -7,6 +7,8 @@ import Navbar from './components/Navbar/Navbar';
 import RegistrationPage from './pages/auth/RegistrationPage';
 import AllPosts from './pages/AllPosts';
 import AdminDashboard from './pages/AdminDashboard';
+import AddCategory from './pages/categories/AddCategory';
+import EditCategory from './pages/categories/EditCategory';
 
 function App() {
   const isAuthenticated = UserService.isAuthenticated();
@@ -29,6 +31,9 @@ function App() {
           <>
             {/* Add your admin routes here */}
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
+            <Route path="/add-category" element={<AddCategory />} />
+            <Route path="/edit-category/:id" element={<EditCategory />} />
           </>
         )}
 
