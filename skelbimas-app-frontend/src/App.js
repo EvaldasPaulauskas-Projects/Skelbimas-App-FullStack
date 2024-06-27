@@ -9,6 +9,8 @@ import AllPosts from './pages/AllPosts';
 import AdminDashboard from './pages/AdminDashboard';
 import AddCategory from './pages/categories/AddCategory';
 import EditCategory from './pages/categories/EditCategory';
+import AddPost from './pages/posts/AddPost';
+import EditPost from './pages/posts/EditPost';
 
 function App() {
   const isAuthenticated = UserService.isAuthenticated();
@@ -34,6 +36,9 @@ function App() {
 
             <Route path="/add-category" element={<AddCategory />} />
             <Route path="/edit-category/:id" element={<EditCategory />} />
+
+            <Route path="/add-post" element={<AddPost />} />
+            <Route path="/edit-post/:id" element={<EditPost />} />
           </>
         )}
 
