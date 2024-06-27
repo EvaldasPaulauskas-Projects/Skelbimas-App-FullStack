@@ -74,7 +74,7 @@ class CommentService {
 
     static async deleteComment(id) {
         try {
-            const response = await axios.delete(`${CommentService.BASE_URL}/public/comments/${id}`);
+            const response = await axios.delete(`${CommentService.BASE_URL}/public/comments/delete/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {
