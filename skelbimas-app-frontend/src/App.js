@@ -5,6 +5,8 @@ import LoginPage from './pages/auth/LoginPage';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import RegistrationPage from './pages/auth/RegistrationPage';
+import AllPosts from './pages/AllPosts';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   const isAuthenticated = UserService.isAuthenticated();
@@ -20,11 +22,13 @@ function App() {
 
         {/* Authenticated User Routes */}
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
+        <Route path="/all-posts" element={isAuthenticated ? <AllPosts /> : <Navigate to="/" />} />
 
         {/* Admin Routes */}
         {isAdmin && isAuthenticated && (
           <>
             {/* Add your admin routes here */}
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </>
         )}
 
