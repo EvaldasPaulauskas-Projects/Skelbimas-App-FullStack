@@ -24,7 +24,21 @@ function EditCategory() {
 
     useEffect(() => {
         fetchProfileInfo();
+
+        // Add event listener for confirmation when leaving the page
+        window.addEventListener("beforeunload", confirmExit);
+
+        return () => {
+            // Remove event listener when component unmounts
+            window.removeEventListener("beforeunload", confirmExit);
+        };
     }, []);
+
+    const confirmExit = (event) => {
+        const message = "Do you really want to leave? Your changes will be lost!";
+        event.returnValue = message; // Standard for most browsers
+        return message; // For some older browsers
+    };
 
     const fetchProfileInfo = async () => {
         try {
@@ -81,7 +95,6 @@ function EditCategory() {
             </div>
         </div>
     );
-    
 }
 
 export default EditCategory;

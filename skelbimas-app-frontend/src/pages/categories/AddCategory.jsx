@@ -8,10 +8,24 @@ function AddCategory() {
     const navigate = useNavigate();
     const [error, setError] = useState("");
     const [profileInfo, setProfileInfo] = useState({});
-
+    
     useEffect(() => {
         fetchProfileInfo();
+
+        // Add event listener for confirmation when leaving the page
+        window.addEventListener("beforeunload", confirmExit);
+
+        return () => {
+            // Remove event listener when component unmounts
+            window.removeEventListener("beforeunload", confirmExit);
+        };
     }, []);
+
+    const confirmExit = (event) => {
+        const message = "Do you really want to leave? Your changes will be lost!";
+        event.returnValue = message; // Standard for most browsers
+        return message; // For some older browsers
+    };
 
     const fetchProfileInfo = async () => {
         try {
@@ -27,10 +41,9 @@ function AddCategory() {
         event.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const category = { tag: categoryName }; // Constructing JSON object
+            const category = { tag: categoryName };
             const response = await CategorieeService.addACategory(category, token);
             console.log('Category added: ', response);
-            // Reset the form
             setCategoryName('');
             navigate("/admin-dashboard");
         } catch (error) {
@@ -71,7 +84,6 @@ function AddCategory() {
             </div>
         </div>
     );
-    
 }
 
 export default AddCategory;
