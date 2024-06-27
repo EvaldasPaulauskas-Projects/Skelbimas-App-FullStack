@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/adminuser/comments")
+@RequestMapping("/public/comments")
 public class commentsController {
 
     @Autowired

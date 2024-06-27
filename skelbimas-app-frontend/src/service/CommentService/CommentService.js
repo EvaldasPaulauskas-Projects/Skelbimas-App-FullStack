@@ -3,26 +3,18 @@ import axios from 'axios';
 class CommentService {
     static BASE_URL = "http://localhost:8080";
 
-    static async getAllComments(token) {
+    static async getAllComments() {
         try {
-            const response = await axios.get(`${CommentService.BASE_URL}/adminuser/comments`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.get(`${CommentService.BASE_URL}/public/comments`);
             return response.data;
         } catch (err) {
             throw err;
         }
     }
 
-    static async addComment(json, token) {
+    static async addComment(json) {
         try {
-            const response = await axios.post(`${CommentService.BASE_URL}/adminuser/comments/add`, json, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.post(`${CommentService.BASE_URL}/public/comments/add`, json);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -30,13 +22,9 @@ class CommentService {
         }
     }
 
-    static async likeComment(id, token) {
+    static async likeComment(id) {
         try {
-            const response = await axios.post(`${CommentService.BASE_URL}/adminuser/comments/like/${id}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.post(`${CommentService.BASE_URL}/public/comments/like/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -44,13 +32,9 @@ class CommentService {
         }
     }
 
-    static async unLikeComment(id, token) {
+    static async unLikeComment(id) {
         try {
-            const response = await axios.post(`${CommentService.BASE_URL}/adminuser/comments/unlike/${id}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.post(`${CommentService.BASE_URL}/public/comments/unlike/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -58,13 +42,9 @@ class CommentService {
         }
     }
 
-    static async dislikeComment(id, token) {
+    static async dislikeComment(id) {
         try {
-            const response = await axios.post(`${CommentService.BASE_URL}/adminuser/comments/dislike/${id}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.post(`${CommentService.BASE_URL}/public/comments/dislike/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -72,13 +52,9 @@ class CommentService {
         }
     }
 
-    static async undislikeComment(id, token) {
+    static async undislikeComment(id) {
         try {
-            const response = await axios.post(`${CommentService.BASE_URL}/adminuser/comments/undislike/${id}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.post(`${CommentService.BASE_URL}/public/comments/undislike/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -86,13 +62,9 @@ class CommentService {
         }
     }
 
-    static async editComment(id, json, token) {
+    static async editComment(id, json) {
         try {
-            const response = await axios.put(`${CommentService.BASE_URL}/adminuser/comments/edit/${id}`, json, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.put(`${CommentService.BASE_URL}/public/comments/edit/${id}`, json);
             console.log(response.data);
             return response.data;
         } catch (err) {
@@ -100,13 +72,9 @@ class CommentService {
         }
     }
 
-    static async deleteComment(id, token) {
+    static async deleteComment(id) {
         try {
-            const response = await axios.delete(`${CommentService.BASE_URL}/adminuser/comments/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios.delete(`${CommentService.BASE_URL}/public/comments/${id}`);
             console.log(response.data);
             return response.data;
         } catch (err) {

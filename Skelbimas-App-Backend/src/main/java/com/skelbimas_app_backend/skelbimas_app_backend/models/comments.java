@@ -13,7 +13,7 @@ public class comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer bookId;
+    private Integer postId;
     private Integer userId;
     private String username;
     private String comment;
@@ -25,20 +25,20 @@ public class comments {
         this.date = LocalDateTime.now();
     }
 
-    public Integer getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
     public Integer getUserId() {

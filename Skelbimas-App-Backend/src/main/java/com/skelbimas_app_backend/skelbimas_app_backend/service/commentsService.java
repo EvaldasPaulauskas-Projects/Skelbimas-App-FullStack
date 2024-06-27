@@ -52,7 +52,7 @@ public class commentsService {
 
     public comments updateComment(Integer id, comments updatedComment) {
         return commentsrepo.findById(id).map(comment -> {
-            comment.setBookId(updatedComment.getBookId());
+            comment.setPostId(updatedComment.getPostId());
             comment.setComment(updatedComment.getComment());
             comment.setLikes(updatedComment.getLikes());
             comment.setDislikes(updatedComment.getDislikes());

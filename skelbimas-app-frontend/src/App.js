@@ -11,6 +11,7 @@ import AddCategory from './pages/categories/AddCategory';
 import EditCategory from './pages/categories/EditCategory';
 import AddPost from './pages/posts/AddPost';
 import EditPost from './pages/posts/EditPost';
+import ViewPost from './pages/posts/ViewPost';
 
 function App() {
   const isAuthenticated = UserService.isAuthenticated();
@@ -27,6 +28,9 @@ function App() {
         {/* Authenticated User Routes */}
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
         <Route path="/all-posts" element={isAuthenticated ? <AllPosts /> : <Navigate to="/" />} />
+
+        <Route path="/view-post/:id" element={<ViewPost />} />
+
 
         {/* Admin Routes */}
         {isAdmin && isAuthenticated && (
