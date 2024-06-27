@@ -80,35 +80,37 @@ function AddPost() {
     
 
     return (
-        <div className="min-h-screen flex justify-center items-center">
-            <div className="bg-gray-800 p-8 rounded-md shadow-md w-full max-w-md">
-                <h1 className="text-3xl font-bold text-center text-gray-200 mb-6">Add a Post</h1>
+        <div className="min-h-screen flex justify-center items-center bg-gray-100">
+            <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
+                <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Add a Post</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-300">Name:</label>
+                        <label htmlFor="name" className="block text-gray-700">Name:</label>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             value={postData.name}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md"
+                            placeholder="Enter name"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="description" className="block text-gray-300">Description:</label>
+                        <label htmlFor="description" className="block text-gray-700">Description:</label>
                         <textarea
                             id="description"
                             name="description"
                             value={postData.description}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md h-32 resize-none"
+                            placeholder="Enter description"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="price" className="block text-gray-300">Price:</label>
+                        <label htmlFor="price" className="block text-gray-700">Price:</label>
                         <input
                             type="number"
                             id="price"
@@ -116,47 +118,50 @@ function AddPost() {
                             value={postData.price}
                             onChange={handleChange}
                             step="0.01"
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md"
+                            placeholder="Enter price"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="photo" className="block text-gray-300">Photo URL:</label>
+                        <label htmlFor="photo" className="block text-gray-700">Photo URL:</label>
                         <input
                             type="text"
                             id="photo"
                             name="photo"
                             value={postData.photo}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md"
+                            placeholder="Enter photo URL"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="city" className="block text-gray-300">City:</label>
+                        <label htmlFor="city" className="block text-gray-700">City:</label>
                         <input
                             type="text"
                             id="city"
                             name="city"
                             value={postData.city}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md"
+                            placeholder="Enter city"
                             required
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="category" className="block text-gray-300">Category:</label>
+                        <label htmlFor="category" className="block text-gray-700">Category:</label>
                         <select
                             id="category"
                             name="category"
                             value={postData.category}
                             onChange={handleChange}
-                            className="bg-transparent border-b-2 border-gray-300 w-full py-2 px-3 text-white placeholder-gray-400 leading-tight focus:outline-none focus:border-primary2 transition duration-300"
+                            className="bg-gray-100 border-b-2 border-gray-300 w-full py-2 px-3 text-gray-800 placeholder-gray-500 leading-tight focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300 rounded-md"
                             required
                         >
-                            <option className='text-black' value="">Select a category</option>
+                            <option value="">Select a category</option>
                             {categories.map(category => (
-                                <option className='text-black' key={category.id} value={category.id}>{category.tag}</option>
+                                <option key={category.id} value={category.id}>{category.tag}</option>
                             ))}
                         </select>
                     </div>
@@ -171,6 +176,7 @@ function AddPost() {
             </div>
         </div>
     );
+    
 }
 
 export default AddPost;
