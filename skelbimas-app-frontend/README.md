@@ -1,70 +1,203 @@
-# Getting Started with Create React App
+# Skelbimas App Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+This is the frontend for the Skelbimas App, built using React. It interacts with a RESTful API to manage user authentication, posts, comments, and categories.
 
-## Available Scripts
+## Technologies Used
+- React
+- Axios
+- JavaScript
 
-In the project directory, you can run:
+## Services
 
-### `npm start`
+### UserService
+This service manages user authentication and profile-related tasks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **login(email, password)**  
+  Sends a POST request to `/auth/login` with the user email and password for authentication.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  ```javascript
+  UserService.login("user@example.com", "password123");
+  ```
 
-### `npm test`
+- **register(userData)**  
+  Sends a POST request to `/auth/register` with the user data for registration.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  ```javascript
+  UserService.register({
+    email: "user@example.com",
+    username: "user123",
+    password: "password123"
+  });
+  ```
 
-### `npm run build`
+- **getAllUsers(token)**  
+  Retrieves all users from `/admin/get-all-users` using the provided token for authentication.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ```javascript
+  UserService.getAllUsers(token);
+  ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **getYourProfile(token)**  
+  Retrieves the profile of the currently logged-in user from `/adminuser/get-profile`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ```javascript
+  UserService.getYourProfile(token);
+  ```
 
-### `npm run eject`
+- **getUserById(userId, token)**  
+  Retrieves a user by ID from `/admin/get-users/{userId}`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ```javascript
+  UserService.getUserById(1, token);
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **logout()**  
+  Removes the token and role from local storage, effectively logging out the user.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  ```javascript
+  UserService.logout();
+  ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### PostService
+This service handles creating, retrieving, editing, and deleting posts.
 
-## Learn More
+- **getAllPosts()**  
+  Retrieves all posts from `/public/posts`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ```javascript
+  PostService.getAllPosts();
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **getPostById(id)**  
+  Retrieves a post by its ID from `/public/search/id/{id}`.
 
-### Code Splitting
+  ```javascript
+  PostService.getPostById(1);
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **addPost(json, token)**  
+  Adds a new post with the provided JSON and authentication token.
 
-### Analyzing the Bundle Size
+  ```javascript
+  PostService.addPost({
+    title: "New Post",
+    content: "This is a new post."
+  }, token);
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **editPostById(id, json, token)**  
+  Updates a post by ID.
 
-### Making a Progressive Web App
+  ```javascript
+  PostService.editPostById(1, {
+    title: "Updated Title",
+    content: "Updated content"
+  }, token);
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **deletePostById(id, token)**  
+  Deletes a post by ID.
 
-### Advanced Configuration
+  ```javascript
+  PostService.deletePostById(1, token);
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### CommentService
+This service manages comments for posts.
 
-### Deployment
+- **getAllComments()**  
+  Retrieves all comments from `/public/comments`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  ```javascript
+  CommentService.getAllComments();
+  ```
 
-### `npm run build` fails to minify
+- **addComment(json)**  
+  Adds a new comment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```javascript
+  CommentService.addComment({
+    postId: 1,
+    userId: 2,
+    content: "Great post!"
+  });
+  ```
+
+- **likeComment(id)**  
+  Likes a comment by its ID.
+
+  ```javascript
+  CommentService.likeComment(1);
+  ```
+
+- **dislikeComment(id)**  
+  Dislikes a comment by its ID.
+
+  ```javascript
+  CommentService.dislikeComment(1);
+  ```
+
+- **editComment(id, json)**  
+  Edits a comment by its ID.
+
+  ```javascript
+  CommentService.editComment(1, {
+    content: "Updated comment"
+  });
+  ```
+
+- **deleteComment(id)**  
+  Deletes a comment by its ID.
+
+  ```javascript
+  CommentService.deleteComment(1);
+  ```
+
+### CategorieeService
+This service handles categories for posts.
+
+- **getAllCategories()**  
+  Retrieves all categories from `/public/api/categories`.
+
+  ```javascript
+  CategorieeService.getAllCategories();
+  ```
+
+- **getCategoryById(id)**  
+  Retrieves a category by its ID.
+
+  ```javascript
+  CategorieeService.getCategoryById(1);
+  ```
+
+- **addACategory(json, token)**  
+  Adds a new category with the provided JSON and token.
+
+  ```javascript
+  CategorieeService.addACategory({
+    tag: "technology",
+    description: "Posts about technology"
+  }, token);
+  ```
+
+- **editACategory(id, json, token)**  
+  Updates a category by its ID.
+
+  ```javascript
+  CategorieeService.editACategory(1, {
+    tag: "science",
+    description: "Posts about science"
+  }, token);
+  ```
+
+- **deleteACategory(id, token)**  
+  Deletes a category by its ID.
+
+  ```javascript
+  CategorieeService.deleteACategory(1, token);
+  ```
+
+## Conclusion
+The Skelbimas App Frontend provides a complete set of services for managing users, posts, comments, and categories. With Axios for making API requests and React as the frontend framework, the app is designed to be scalable and maintainable.
+
